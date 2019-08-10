@@ -921,7 +921,7 @@ pre .javascript .function {
   }
 }
 .header {
-  background: url("../image/header-bg.jpg");
+  background: url("../images/header-bg.jpg");
 }
 .header-inner {
   position: relative;
@@ -1439,7 +1439,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f7f;
+  background: #ede43c;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
