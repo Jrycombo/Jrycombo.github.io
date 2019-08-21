@@ -927,10 +927,11 @@ pre .javascript .function {
   position: relative;
 }
 .headband {
-  background: #222;
-  height: 3px;
+  background: url("../images/header-bg.jpg");
+  height: 0;
 }
 .site-meta {
+  background: url("../images/header-bg.jpg");
   margin: 0;
   text-align: center;
 }
@@ -940,7 +941,7 @@ pre .javascript .function {
   }
 }
 .brand {
-  background: #222;
+  background: url("../images/header-bg.jpg");
   border-bottom: none;
   color: #fff;
   display: inline-block;
@@ -1439,7 +1440,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ede43c;
+  background: #0934e3;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2633,6 +2634,13 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+.main-inner {
+  background: #fff;
+  opacity: 0.9;
+}
+.header-inner {
+  opacity: 0.9;
 }
 body {
   background: url("/images/background.jpg");

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="addrinfo结构体定义及相关操作一、定义addrinfo结构体包含于头文件#include&amp;lt;netdb.h&amp;gt;中，常用于网络编程中解析hostname时使用，来保存获取到的与此域名相关的各种信息，其具体结构如下： 1234567891011struct addrinfo&amp;#123;  int ai_flags;                 /* Input flags.  */">
+<meta name="keywords" content="网络编程,C语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="addrinfo结构体定义及相关操作">
+<meta property="og:url" content="http://yoursite.com/2019/08/21/addrinfo结构体定义及相关操作/index.html">
+<meta property="og:site_name" content="Jrycombo&#39;s Blog">
+<meta property="og:description" content="addrinfo结构体定义及相关操作一、定义addrinfo结构体包含于头文件#include&amp;lt;netdb.h&amp;gt;中，常用于网络编程中解析hostname时使用，来保存获取到的与此域名相关的各种信息，其具体结构如下： 1234567891011struct addrinfo&amp;#123;  int ai_flags;                 /* Input flags.  */">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-21T13:22:47.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="addrinfo结构体定义及相关操作">
+<meta name="twitter:description" content="addrinfo结构体定义及相关操作一、定义addrinfo结构体包含于头文件#include&amp;lt;netdb.h&amp;gt;中，常用于网络编程中解析hostname时使用，来保存获取到的与此域名相关的各种信息，其具体结构如下： 1234567891011struct addrinfo&amp;#123;  int ai_flags;                 /* Input flags.  */">
+  <link rel="alternate" href="/atom.xml" title="Jrycombo's Blog" type="application/atom+xml">
+  <link rel="canonical" href="http://yoursite.com/2019/08/21/addrinfo结构体定义及相关操作/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>addrinfo结构体定义及相关操作 | Jrycombo's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jrycombo's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">胡乱写的一些草稿，记录部分做过的工作。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+      
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/addrinfo结构体定义及相关操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jrycombo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jrycombo's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">addrinfo结构体定义及相关操作
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-21 21:21:10 / 修改时间：21:22:47" itemprop="dateCreated datePublished" datetime="2019-08-21T21:21:10+08:00">2019-08-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="addrinfo结构体定义及相关操作"><a href="#addrinfo结构体定义及相关操作" class="headerlink" title="addrinfo结构体定义及相关操作"></a>addrinfo结构体定义及相关操作</h1><h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p><strong>addrinfo</strong>结构体包含于头文件<strong>#include&lt;netdb.h&gt;</strong>中，常用于网络编程中解析hostname时使用，来保存获取到的与此域名相关的各种信息，其具体结构如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">addrinfo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> ai_flags;                 <span class="comment">/* Input flags.  */</span></span><br><span class="line">  <span class="keyword">int</span> ai_family;                <span class="comment">/* Protocol family for socket.  */</span></span><br><span class="line">  <span class="keyword">int</span> ai_socktype;              <span class="comment">/* Socket type.  */</span></span><br><span class="line">  <span class="keyword">int</span> ai_protocol;              <span class="comment">/* Protocol for socket.  */</span></span><br><span class="line">  <span class="keyword">socklen_t</span> ai_addrlen;         <span class="comment">/* Length of socket address.  */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span> *<span class="title">ai_addr</span>;</span>     <span class="comment">/* Socket address for socket.  */</span></span><br><span class="line">  <span class="keyword">char</span> *ai_canonname;           <span class="comment">/* Canonical name for service location.  */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">addrinfo</span> *<span class="title">ai_next</span>;</span>     <span class="comment">/* Pointer to next in list.  */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="二、各参数介绍"><a href="#二、各参数介绍" class="headerlink" title="二、各参数介绍"></a>二、各参数介绍</h3><h4 id="2-1-ai-flags"><a href="#2-1-ai-flags" class="headerlink" title="2.1 ai_flags"></a>2.1 ai_flags</h4><p><strong>ai_flags</strong>用来指定如何处理此域名，具体参数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">标志</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AI_ADDRCONFIG</td>
+<td align="center">只有当主机配置了IPv4（IPv6）地址才进行查询IPv4（IPv6）地址</td>
+</tr>
+<tr>
+<td align="center">AI_ALL</td>
+<td align="center">查找IPv4和IPv6地址</td>
+</tr>
+<tr>
+<td align="center">AI_CANONNAME</td>
+<td align="center">请求canonical name（主机规范名称）</td>
+</tr>
+<tr>
+<td align="center">AI_NUMERICHOST</td>
+<td align="center">阻止域名解析</td>
+</tr>
+<tr>
+<td align="center">AI_NUMERICSERV</td>
+<td align="center">阻止服务名解析</td>
+</tr>
+<tr>
+<td align="center">AI_PASSIVE</td>
+<td align="center">套接字地址用于监听绑定</td>
+</tr>
+<tr>
+<td align="center">AI_V4MAPPED</td>
+<td align="center">若无IPv6地址，则返回IPv4地址</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-ai-family"><a href="#2-2-ai-family" class="headerlink" title="2.2 ai_family"></a>2.2 ai_family</h4><p><strong>ai_famili</strong>指定返回地址的协议簇，集体参数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">域</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AF_INET</td>
+<td align="center">IPv4域</td>
+</tr>
+<tr>
+<td align="center">AF_INET6</td>
+<td align="center">IPv6域</td>
+</tr>
+<tr>
+<td align="center">AF_UNIX</td>
+<td align="center">UNIX域</td>
+</tr>
+<tr>
+<td align="center">AF_NSPEC</td>
+<td align="center">未指定</td>
+</tr>
+</tbody></table>
+<h4 id="2-3-ai-socktype"><a href="#2-3-ai-socktype" class="headerlink" title="2.3 ai_socktype"></a>2.3 ai_socktype</h4><p><strong>ai_socktype</strong>表示socket的类型，主要有SOCK_STREA(流)M和SOCK_DGRAM(数据报)两种，其它可选如下： </p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SOCK_DGRAM</td>
+<td align="center">长度固定、无连接的不可靠报文传输</td>
+</tr>
+<tr>
+<td align="center">SOCK_RAW</td>
+<td align="center">IP协议的数据报接口</td>
+</tr>
+<tr>
+<td align="center">SOCK_SEQPACKET</td>
+<td align="center">长度固定、有序、可靠的面向连接的报文传输</td>
+</tr>
+<tr>
+<td align="center">SOCK_STREAM</td>
+<td align="center">有序、可靠、双向的面向连接的报文传输</td>
+</tr>
+</tbody></table>
+<h4 id="2-4-ai-protocol"><a href="#2-4-ai-protocol" class="headerlink" title="2.4 ai_protocol"></a>2.4 ai_protocol</h4><p><strong>ai_protocol</strong>表示协议类型，0为任意类型，具体类型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Standard well-defined IP protocols.  */</span></span><br><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">    IPPROTO_IP = <span class="number">0</span>,        <span class="comment">/* Dummy protocol for TCP.  */</span></span><br><span class="line">    IPPROTO_ICMP = <span class="number">1</span>,      <span class="comment">/* Internet Control Message Protocol.  */</span></span><br><span class="line">    IPPROTO_IGMP = <span class="number">2</span>,      <span class="comment">/* Internet Group Management Protocol. */</span></span><br><span class="line">    IPPROTO_IPIP = <span class="number">4</span>,      <span class="comment">/* IPIP tunnels (older KA9Q tunnels use 94).  */</span></span><br><span class="line">    IPPROTO_TCP = <span class="number">6</span>,       <span class="comment">/* Transmission Control Protocol.  */</span></span><br><span class="line">    IPPROTO_EGP = <span class="number">8</span>,       <span class="comment">/* Exterior Gateway Protocol.  */</span></span><br><span class="line">    IPPROTO_PUP = <span class="number">12</span>,      <span class="comment">/* PUP protocol.  */</span></span><br><span class="line">    IPPROTO_UDP = <span class="number">17</span>,      <span class="comment">/* User Datagram Protocol.  */</span></span><br><span class="line">    IPPROTO_IDP = <span class="number">22</span>,      <span class="comment">/* XNS IDP protocol.  */</span></span><br><span class="line">    IPPROTO_TP = <span class="number">29</span>,       <span class="comment">/* SO Transport Protocol Class 4.  */</span></span><br><span class="line">    IPPROTO_DCCP = <span class="number">33</span>,     <span class="comment">/* Datagram Congestion Control Protocol.  */</span></span><br><span class="line">    IPPROTO_IPV6 = <span class="number">41</span>,     <span class="comment">/* IPv6 header.  */</span></span><br><span class="line">    IPPROTO_RSVP = <span class="number">46</span>,     <span class="comment">/* Reservation Protocol.  */</span></span><br><span class="line">    IPPROTO_GRE = <span class="number">47</span>,      <span class="comment">/* General Routing Encapsulation.  */</span></span><br><span class="line">    IPPROTO_ESP = <span class="number">50</span>,      <span class="comment">/* encapsulating security payload.  */</span></span><br><span class="line">    IPPROTO_AH = <span class="number">51</span>,       <span class="comment">/* authentication header.  */</span></span><br><span class="line">    IPPROTO_MTP = <span class="number">92</span>,      <span class="comment">/* Multicast Transport Protocol.  */</span></span><br><span class="line">    IPPROTO_BEETPH = <span class="number">94</span>,   <span class="comment">/* IP option pseudo header for BEET.  */</span></span><br><span class="line">    IPPROTO_ENCAP = <span class="number">98</span>,    <span class="comment">/* Encapsulation Header.  */</span></span><br><span class="line">    IPPROTO_PIM = <span class="number">103</span>,     <span class="comment">/* Protocol Independent Multicast.  */</span></span><br><span class="line">    IPPROTO_COMP = <span class="number">108</span>,    <span class="comment">/* Compression Header Protocol.  */</span></span><br><span class="line">    IPPROTO_SCTP = <span class="number">132</span>,    <span class="comment">/* Stream Control Transmission Protocol.  */</span></span><br><span class="line">    IPPROTO_UDPLITE = <span class="number">136</span>, <span class="comment">/* UDP-Lite protocol.  */</span></span><br><span class="line">    IPPROTO_RAW = <span class="number">255</span>,     <span class="comment">/* Raw IP packets.  */</span></span><br><span class="line">    IPPROTO_MAX</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-ai-addrlen"><a href="#2-5-ai-addrlen" class="headerlink" title="2.5 ai_addrlen"></a>2.5 ai_addrlen</h4><p><strong>ai_addrlen</strong>表示socket address 的长度。</p>
+<h4 id="2-6-ai-addr"><a href="#2-6-ai-addr" class="headerlink" title="2.6 ai_addr"></a>2.6 ai_addr</h4><p><strong>ai_addr</strong>表示socket address 的地址。</p>
+<h4 id="2-7-ai-canonname"><a href="#2-7-ai-canonname" class="headerlink" title="2.7 ai_canonname"></a>2.7 ai_canonname</h4><p><strong>ai_canonname</strong>表述服务器地址的规范名称。</p>
+<h4 id="2-8-ai-next"><a href="#2-8-ai-next" class="headerlink" title="2.8 ai_next"></a>2.8 ai_next</h4><p><strong>ai_next</strong>表示指向多下一条地址，一个域名可能解析为多个ip。</p>
+<h3 id="三、相关操作"><a href="#三、相关操作" class="headerlink" title="三、相关操作"></a>三、相关操作</h3><h4 id="3-1-getaddrinfo"><a href="#3-1-getaddrinfo" class="headerlink" title="3.1 getaddrinfo"></a>3.1 getaddrinfo</h4><p><strong>getaddrinfo</strong>函数位于头文件<strong>#include&lt;netdb.h&gt;</strong>中，用于完成主机名到地址的解析，此函数时协议无关的，能够支持IPv4与IPv6。其调用方法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getaddrinfo</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> nodename, <span class="comment">//host或者IP地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> servname, <span class="comment">//十进制端口号 或者常用服务名称如"ftp"、"http"等</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> struct addrinfo *<span class="keyword">restrict</span> hints, <span class="comment">//获取信息要求设置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    struct addrinfo **<span class="keyword">restrict</span> res)</span></span>; <span class="comment">//获取信息结果</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>nodename为域名地址或者数字化的地址字符串（IPv6、IPv4），如果 <a href="https://www.cnblogs.com/LubinLew/p/POSIX-getaddrinfo.html#parameter_hints_ai_flags" target="_blank" rel="noopener">ai_flags</a> 中设置了AI_NUMERICHOST 标志，那么该参数只能是数字化的地址字符串。</li>
+<li>servname为端口号，可以为数字，也可以为预设的如ftp、http等，如果 <a href="https://www.cnblogs.com/LubinLew/p/POSIX-getaddrinfo.html#parameter_hints_ai_flags" target="_blank" rel="noopener">ai_flags</a> 设置了AI_NUMERICSERV 标志并且该参数未设置为NULL，那么该参数必须是一个指向10进制的端口号字符串。</li>
+<li>hint指向addrinfo结构体，只能设定该结构体中ai_family、ai_socktype、ai_protocol和ai_flags 四个域。</li>
+<li>res使该参数获取一个指向存储结果的addrinfo结构体，使用完成后调用freeaddrinfo()释放存储结果空间。</li>
+</ul>
+<h4 id="3-2-freeaddrinfo"><a href="#3-2-freeaddrinfo" class="headerlink" title="3.2 freeaddrinfo"></a>3.2 freeaddrinfo</h4><p>在上面介绍getaddrinfo时，传入了参数addrinfo用于保存查询的结果。查看该方法的实现，其在内部调用了calloc动态申请了内存，并将结果保存到了传入的参数中，因此在使用getaddrinfo成功获取到地址后，必须要对该部分内存进行释放。freeaddrinfo即是netdb.h提供的释放内存方法。其实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">freeaddrinfo</span><span class="params">(struct addrinfo *ai)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">addrinfo</span> *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__BIONIC__)</span></span><br><span class="line">    <span class="keyword">if</span> (ai == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">    _DIAGASSERT(ai != <span class="literal">NULL</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        next = ai-&gt;ai_next;</span><br><span class="line">        <span class="keyword">if</span> (ai-&gt;ai_canonname)</span><br><span class="line">            <span class="built_in">free</span>(ai-&gt;ai_canonname);</span><br><span class="line">        <span class="comment">/* no need to free(ai-&gt;ai_addr) */</span></span><br><span class="line">        <span class="built_in">free</span>(ai);</span><br><span class="line">        ai = next;</span><br><span class="line">    &#125; <span class="keyword">while</span> (ai);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>链接：</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/LubinLew/p/POSIX-DataStructure.html" target="_blank" rel="noopener">https://www.cnblogs.com/LubinLew/p/POSIX-DataStructure.html</a></p>
+<p><a href="https://www.cnblogs.com/fnlingnzb-learner/p/7542770.html" target="_blank" rel="noopener">https://www.cnblogs.com/fnlingnzb-learner/p/7542770.html</a></p>
+</blockquote>
+<p>书籍：</p>
+<blockquote>
+<p>《UNIX环境高级编程》</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/网络编程/" rel="tag"><i class="fa fa-skyatlas"></i> 网络编程</a>
+          
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-skyatlas"></i> C语言</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/02/第一篇博文测试/" rel="next" title="第一篇博文测试">
+                <i class="fa fa-chevron-left"></i> 第一篇博文测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="Jrycombo">
+  <p class="site-author-name" itemprop="name">Jrycombo</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/Jrycombo" title="GitHub &rarr; https://github.com/Jrycombo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="/jerryc.9615@gmail.com" title="E-Mail &rarr; jerryc.9615@gmail.com"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://weibo.com/jerrychen315" title="Weibo &rarr; https://weibo.com/jerrychen315" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://twitter.com/Jerryc9615" title="Twitter &rarr; https://twitter.com/Jerryc9615" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.snort.org" title="https://www.snort.org" rel="noopener" target="_blank">Snort</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#addrinfo结构体定义及相关操作"><span class="nav-number">1.</span> <span class="nav-text">addrinfo结构体定义及相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、各参数介绍"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、各参数介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-ai-flags"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">2.1 ai_flags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-ai-family"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">2.2 ai_family</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-ai-socktype"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">2.3 ai_socktype</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-ai-protocol"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">2.4 ai_protocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-ai-addrlen"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">2.5 ai_addrlen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-ai-addr"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">2.6 ai_addr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-ai-canonname"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">2.7 ai_canonname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-ai-next"><span class="nav-number">1.0.2.8.</span> <span class="nav-text">2.8 ai_next</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、相关操作"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-getaddrinfo"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">3.1 getaddrinfo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-freeaddrinfo"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">3.2 freeaddrinfo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.0.4.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-flash"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jrycombo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a></div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
