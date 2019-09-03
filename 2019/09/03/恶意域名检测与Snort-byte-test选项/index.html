@@ -61,15 +61,22 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Jrycombo&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="一、检测包含恶意域名的TCP数据包最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：">
+<meta name="keywords" content="Snort,恶意域名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恶意域名检测与Snort byte_test选项">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/恶意域名检测与Snort-byte-test选项/index.html">
 <meta property="og:site_name" content="Jrycombo&#39;s Blog">
+<meta property="og:description" content="一、检测包含恶意域名的TCP数据包最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/09/03/恶意域名检测与Snort-byte-test选项/2019-09-03-%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E4%B8%8ESnort-byte-test%E9%80%89%E9%A1%B9/DNS_header.jpg">
+<meta property="og:updated_time" content="2019-09-03T14:17:36.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jrycombo&#39;s Blog">
+<meta name="twitter:title" content="恶意域名检测与Snort byte_test选项">
+<meta name="twitter:description" content="一、检测包含恶意域名的TCP数据包最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/03/恶意域名检测与Snort-byte-test选项/2019-09-03-%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E4%B8%8ESnort-byte-test%E9%80%89%E9%A1%B9/DNS_header.jpg">
   <link rel="alternate" href="/atom.xml" title="Jrycombo's Blog" type="application/atom+xml">
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/03/恶意域名检测与Snort-byte-test选项/">
 
 
 <script id="page.configurations">
@@ -78,7 +85,7 @@
   };
 </script>
 
-  <title>Jrycombo's Blog</title>
+  <title>恶意域名检测与Snort byte_test选项 | Jrycombo's Blog</title>
   
 
 
@@ -117,7 +124,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  <div class="container sidebar-position-left page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -152,7 +159,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
       
     
 
@@ -219,8 +226,9 @@
 
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-      
+
+  <div id="posts" class="posts-expand">
+    
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -241,10 +249,8 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/03/恶意域名检测与Snort-byte-test选项/" class="post-title-link" itemprop="url">恶意域名检测与Snort byte_test选项</a>
+          <h1 class="post-title" itemprop="name headline">恶意域名检测与Snort byte_test选项
+
               
             
           </h1>
@@ -282,18 +288,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="一、检测包含恶意域名的TCP数据包"><a href="#一、检测包含恶意域名的TCP数据包" class="headerlink" title="一、检测包含恶意域名的TCP数据包"></a>一、检测包含恶意域名的TCP数据包</h3><p>最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/03/恶意域名检测与Snort-byte-test选项/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
+        <h3 id="一、检测包含恶意域名的TCP数据包"><a href="#一、检测包含恶意域名的TCP数据包" class="headerlink" title="一、检测包含恶意域名的TCP数据包"></a>一、检测包含恶意域名的TCP数据包</h3><p>最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert tcp $HOME_NET any -&gt; $EXTERNAL_NET [80,443] (msg:&quot;BLACKLIST TeslaCrypt Ransomware C2 Domain Detected&quot;; flow:to_server; content:&quot;faenzabike.makkie.com&quot;; fast_pattern:only; http_header; metadata:service http; sid:100001; rev:1;)</span><br></pre></td></tr></table></figure>
+
+<p>经测试此规则能够正确告警，且误报率满足部署要求，并在测试中发现去掉http_header关键字依然能够保持较低误报率，同时还能将检测范围扩大到http_body部分。为了便于特征库的管理，将content关键字换为pcre正则匹配后，能够将多个恶意域名整合到一条规则中，缩短规则库条数。整理后规则如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert tcp $HOME_NET any -&gt; $EXTERNAL_NET [80,443] (msg:&quot;BLACKLIST TeslaCrypt Ransomware C2 Domain Detected&quot;; flow:to_server; pcre:&quot;/(faenzabike.makkie.com|runescape-autominer.info|artsabc.com)/miT&quot;; metadata:service http; sid:100001; rev:1;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、检测解析恶意域名的DNS数据包"><a href="#二、检测解析恶意域名的DNS数据包" class="headerlink" title="二、检测解析恶意域名的DNS数据包"></a>二、检测解析恶意域名的DNS数据包</h3><p>在本地没有缓存的情况下，请求上述恶意IP时主机会向外发送DNS包请求对地址进行解析，因此如果能够检测到对威胁情报库中的恶意域名的DNS请求，就能从一开始拦截对危险域名的访问。类似对于TCP协议的检测，对于基于UDP的DNS数据包的检测规则可以写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert udp $HOME_NET any -&gt; $EXTERNAL_NET 53 (msg:&quot;BLACKLIST TeslaCrypt Ransomware C2 Domain Detected&quot;; flow:to_server; pcre:&quot;/(faenzabike.makkie.com|runescape-autominer.info|artsabc.com)/mi&quot;; metadata:service dns; sid:100002; rev:1;)</span><br></pre></td></tr></table></figure>
+
+<p>规则中设置检测的外部端口为53端口，即DNS协议使用的端口，同时使用pcre关键字将多个恶意域名整合到一起。经测试此规则能够正确告警，但是我们需要针对性的对DNS请求进行告警，并且需要尽量减少误报以达到部署标准，因此需要使用byte_test关键字进行进一步的匹配。</p>
+<h3 id="三、使用byte-test检测DNS查询请求"><a href="#三、使用byte-test检测DNS查询请求" class="headerlink" title="三、使用byte_test检测DNS查询请求"></a>三、使用byte_test检测DNS查询请求</h3><p>Snort规则中的<strong>byte_test</strong>关键词允许我们从数据包中的指定位置获取多个值与另一个值进行比较，其常用句法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_test:&lt;convert&gt;, [!]&lt;operator&gt;, &lt;value&gt;, &lt;offset&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中<em>convert</em>为须比较的字节数，<em>operator</em>为比较操作符（’&gt;’,’&lt;’,’=’,’$’…），<em>value</em>为比较值，<em>offset</em>为偏移字段。</p>
+<p>了解byte_test的句法后需要对DNS协议以及DNS查询请求的数据包进行分析，找到表示查询请求的字节进行值比较。DNS头部请求如下图。</p>
+<p><img src="2019-09-03-%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E4%B8%8ESnort-byte-test%E9%80%89%E9%A1%B9/DNS_header.jpg" alt="DNS头部"></p>
+<p>通过对DNS查询请求数据包的分析可以了解到，DNS请求数据包的头部QR位与Opcode都为0表示查询请求。因此要识别出DNS查询请求，需判断DNS数据包中的这两个位置是否为0，检测时需要对DNS头部的第三个字节进行检测（即偏移两位）。第三个字节从高位到低位分别是：7:QR、6-3:Opcode、2:AA、1:TC、0:RD。只需要对高五位进行判断，可以将这个字节的值和0xF8(1111 1000)进行<strong>与</strong>操作，此时检测的是高五位是否为<strong>1</strong>，因此需要对操作结果取反。所以byte_test关键词的参数应设为”byte_test:1, !&amp;, 0xF8, 2;”，最后整个规则修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert udp $HOME_NET any -&gt; $EXTERNAL_NET 53 (msg:&quot;BLACKLIST TeslaCrypt Ransomware C2 Domain Detected&quot;; flow:to_server; byte_test:1, !&amp;, 0xF8, 2; pcre:&quot;/(faenzabike.makkie.com|runescape-autominer.info|artsabc.com)/mi&quot;; metadata:service dns; sid:100002; rev:1;)</span><br></pre></td></tr></table></figure>
+
+<p>经测试此规则能够检测对于恶意域名的DNS查询请求，并且误报率满足部署要求。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><strong>Snort官方手册</strong></p>
+<p><a href="https://snort-org-site.s3.amazonaws.com/production/document_files/files/000/000/178/original/snort_manual.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIXACIED2SPMSC7GA%2F20190903%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190903T133204Z&amp;X-Amz-Expires=172800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=661ecab1a86e05004e31bd2010da89bffdff30c6b2aeb366d453245d76db8d17" target="_blank" rel="noopener">https://snort-org-site.s3.amazonaws.com/production/document_files/files/000/000/178/original/snort_manual.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIXACIED2SPMSC7GA%2F20190903%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190903T133204Z&amp;X-Amz-Expires=172800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=661ecab1a86e05004e31bd2010da89bffdff30c6b2aeb366d453245d76db8d17</a></p>
+<p><strong>勒索软件域名与IP信息</strong></p>
+<p><a href="https://ransomwaretracker.abuse.ch/" target="_blank" rel="noopener">https://ransomwaretracker.abuse.ch/</a></p>
+</blockquote>
+
     </div>
 
     
@@ -301,198 +324,27 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/addrinfo结构体定义及相关操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jrycombo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jrycombo's Blog">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/21/addrinfo结构体定义及相关操作/" class="post-title-link" itemprop="url">addrinfo结构体定义及相关操作</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-21 21:21:10 / 修改时间：21:25:23" itemprop="dateCreated datePublished" datetime="2019-08-21T21:21:10+08:00">2019-08-21</time>
-            </span>
           
-            
-
-            
+        
+        <div class="post-tags">
+            <a href="/tags/Snort/" rel="tag"><i class="fa fa-skyatlas"></i> Snort</a>
           
-
-          <br>
-
+            <a href="/tags/恶意域名/" rel="tag"><i class="fa fa-skyatlas"></i> 恶意域名</a>
+          
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p><strong>addrinfo</strong>结构体包含于头文件<strong>#include&lt;netdb.h&gt;</strong>中，常用于网络编程中解析hostname时使用，来保存获取到的与此域名相关的各种信息，其具体结构如下：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/21/addrinfo结构体定义及相关操作/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/21/addrinfo结构体定义及相关操作/" rel="next" title="addrinfo结构体定义及相关操作">
+                <i class="fa fa-chevron-left"></i> addrinfo结构体定义及相关操作
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/第一篇博文测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jrycombo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jrycombo's Blog">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/02/第一篇博文测试/" class="post-title-link" itemprop="url">第一篇博文测试</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+          <span class="post-nav-divider"></span>
 
-              
-                
-              
-
-              <time title="创建时间：2019-08-02 16:30:05" itemprop="dateCreated datePublished" datetime="2019-08-02T16:30:05+08:00">2019-08-02</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-21 21:22:53" itemprop="dateModified" datetime="2019-08-21T21:22:53+08:00">2019-08-21</time>
-              </span>
-            
-          
-
-          <br>
-
+          <div class="post-nav-prev post-nav-item">
+          </div>
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>文本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ture):</span><br><span class="line">    learn</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/02/第一篇博文测试/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
     </footer>
   </div>
   
@@ -500,14 +352,12 @@
   
   </article>
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
 
         </div>
           
@@ -522,8 +372,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,6 +500,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、检测包含恶意域名的TCP数据包"><span class="nav-number">1.</span> <span class="nav-text">一、检测包含恶意域名的TCP数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、检测解析恶意域名的DNS数据包"><span class="nav-number">2.</span> <span class="nav-text">二、检测解析恶意域名的DNS数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、使用byte-test检测DNS查询请求"><span class="nav-number">3.</span> <span class="nav-text">三、使用byte_test检测DNS查询请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -699,6 +575,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.3.0"></script>
 
