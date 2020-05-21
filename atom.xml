@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-21T11:52:22.131Z</updated>
+  <updated>2020-05-21T12:17:07.114Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java分布式项目相关tips</title>
+    <link href="http://yoursite.com/2020/04/01/Java%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3tips/"/>
+    <id>http://yoursite.com/2020/04/01/Java分布式项目相关tips/</id>
+    <published>2020-04-01T12:02:03.000Z</published>
+    <updated>2020-05-21T12:17:07.114Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java分布式项目中遇到的部分小Tips与大Tips。</p><a id="more"></a><h4 id="小Tips："><a href="#小Tips：" class="headerlink" title="小Tips："></a>小Tips：</h4><ol><li>model实现序列化才能使用redistemplet进行存储；</li><li>多级缓存，请求-&gt;本地缓存-&gt;redis-&gt;数据库；</li><li>基于session基于token认证；</li><li>guava代替hashmap；</li><li>尽量使用redis cluster，单个redis挂掉之后不要讲流量迅速泄洪至mysql；</li><li>会话续命操作，延长至30分钟；请求续命、keepalive续命；</li><li>通用性能优化口诀:缓存、异步、批处理。</li></ol><h4 id="大Tips"><a href="#大Tips" class="headerlink" title="大Tips:"></a>大Tips:</h4><ol><li>在大型的应用集群中若对Redis访问过度依赖，会否产生应用服务器到Redis之间的网络带宽产生瓶颈？若会产生瓶颈，如何解决这样的问题？<ul><li>如果nginx服务器内存还算充裕，热点数据估量可以承受的话，可以使用nginx的 lua sharedic来降低redis的依赖；</li><li>如果单台nginx内存不足，则采用 lvs+keepalived+ n 台nginx服务器对内存进行横向拓展；</li><li>如果lua sharedic成本过高无法承受，则将redis改造为cluster架构，应用集群只连接到n台slave上来均摊网络带宽消耗，且使redis集群的各主机尽量不处在同一个机房或网段，避免使用同一个出入口导致网络带宽瓶颈。</li></ul></li><li>缓存的脏读问题：也就是数据的不一致性？<ul><li>可以考虑对更新操作的时候先删除缓存，然后再更新数据库。</li></ul></li><li>缓存失效：可能会带来的缓存雪崩？<ul><li>可以考虑给每一个缓存的数据加上一个失效标记，若过期则启动另外一个线程进行缓存数据的更新。</li></ul></li><li>Nginx作为一个反向代理的中间件接入节点，若要感知到业务，是否会引入太多的定制化业务的能力，是否可以考虑隔离分层？多引入一层后又如何确保性能？<ul><li>可以考虑将nginx分为两层部署 第一层不管业务 只管代理 数据压缩等基础功能 第二层管业务 可以做缓存 限流等功能 做到区分 引入的代价是网络上多了一个消耗节点</li></ul></li><li>使用两层nginx的策略去实现业务分层隔离？多引入一层后又如何确保性能？<ul><li>nginx的配置是可以写多个的，然后引入到主配置文件中，这样就可以做到配置内容上的隔离</li><li>确保使用多层nginx的性能可以通过使用keepalive连接到二层nginx</li></ul></li><li>使用全页面静态化技术之后，对应的缓存更新就变得非常困难，是否可以考虑将对应的商品模型做更细力度的拆分并使用不同的缓存策略？<ul><li>对于价格、库存实时性要求高的每次都到服务端拿最新的值；对于sku中其他的属性取CDN内容就行，如果这些实时性要求不高的属性变化了，上游系统发给我们属性变更的消息，我们拿到这个消息出发脚本重新执行一遍无头js，然后把生成的html文件再推倒CDN</li></ul></li><li>全页面静态化技术如何在互联网环境下做到可及时下架 ?<ul><li>商品变动或下架后，由后端系统触发异步消息给某一个服务，这个服务负责调用爬虫重新生成最新的页面后推送给cdn服务，这些都是需要api对接的</li></ul></li><li>redis缓存除了课程中使用的简单的key，value结构，其它的数据结构各自适用什么样的场景<ul><li>zset用来做排行榜</li><li>bitmap用来做布隆过滤器</li><li>geo用来做谁在附近的功能</li></ul></li><li>ocketmq除了消息订阅模式,事务型消息模式外还有其他哪些消息类型和模式?<ul><li>可以参考下他的官网 例如批量发送 延迟消息等</li></ul></li><li>如何保证异步mq的性能高效问题？<ul><li>多主多从 分布式扩展</li></ul></li><li>mysql应用优化<ul><li>写操作:批量insert、批量update: jdbcTemplet编译sql语句1次与N次的复杂度相差较大、网络消耗、写入时磁盘寻址复杂度</li><li>读操作:索引</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java分布式项目中遇到的部分小Tips与大Tips。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>恶意域名检测与Snort_byte_test选项</title>
