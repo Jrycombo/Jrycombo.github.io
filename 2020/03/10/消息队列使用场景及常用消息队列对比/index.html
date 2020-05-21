@@ -61,20 +61,31 @@
   };
 </script>
 
-  <meta name="description" content="第一章文本 12while(ture):    learn">
-<meta name="keywords" content="test">
+  <meta name="description" content="消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削峰等问题；实现高性能，高可用，可伸缩和最终一致性架构；使用较多的消息队列有ActiveMQ、RabbitMQ、Kafka、RocketMQ等。">
+<meta name="keywords" content="Java,消息队列,RocketMQ,Kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇博文测试">
-<meta property="og:url" content="http://jrycombo.space/2019/08/02/第一篇博文测试/index.html">
+<meta property="og:title" content="消息队列使用场景及常用消息队列对比">
+<meta property="og:url" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/index.html">
 <meta property="og:site_name" content="Jrycombo&#39;s Blog">
-<meta property="og:description" content="第一章文本 12while(ture):    learn">
+<meta property="og:description" content="消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削峰等问题；实现高性能，高可用，可伸缩和最终一致性架构；使用较多的消息队列有ActiveMQ、RabbitMQ、Kafka、RocketMQ等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T13:22:53.847Z">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E4%B8%B2%E8%A1%8C%E5%A4%84%E7%90%86.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%BC%82%E6%AD%A5%E5%8C%96.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E4%BC%A0%E7%BB%9F%E8%AE%A2%E5%8D%95.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%BA%94%E7%94%A8%E8%A7%A3%E8%80%A6.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E6%B5%81%E9%87%8F%E5%89%8A%E5%B3%B0.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/Kafka%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%9A%E4%BF%A1.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%80%9A%E4%BF%A1.png">
+<meta property="og:updated_time" content="2020-05-21T13:30:24.892Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇博文测试">
-<meta name="twitter:description" content="第一章文本 12while(ture):    learn">
+<meta name="twitter:title" content="消息队列使用场景及常用消息队列对比">
+<meta name="twitter:description" content="消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削峰等问题；实现高性能，高可用，可伸缩和最终一致性架构；使用较多的消息队列有ActiveMQ、RabbitMQ、Kafka、RocketMQ等。">
+<meta name="twitter:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E4%B8%B2%E8%A1%8C%E5%A4%84%E7%90%86.png">
   <link rel="alternate" href="/atom.xml" title="Jrycombo's Blog" type="application/atom+xml">
-  <link rel="canonical" href="http://jrycombo.space/2019/08/02/第一篇博文测试/">
+  <link rel="canonical" href="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/">
 
 
 <script id="page.configurations">
@@ -83,7 +94,7 @@
   };
 </script>
 
-  <title>第一篇博文测试 | Jrycombo's Blog</title>
+  <title>消息队列使用场景及常用消息队列对比 | Jrycombo's Blog</title>
   
 
 
@@ -233,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jrycombo.space/2019/08/02/第一篇博文测试/">
+    <link itemprop="mainEntityOfPage" href="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jrycombo">
@@ -247,7 +258,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">第一篇博文测试
+          <h1 class="post-title" itemprop="name headline">消息队列使用场景及常用消息队列对比
 
               
             
@@ -267,7 +278,7 @@
                 
               
 
-              <time title="创建时间：2019-08-02 16:30:05" itemprop="dateCreated datePublished" datetime="2019-08-02T16:30:05+08:00">2019-08-02</time>
+              <time title="创建时间：2020-03-10 20:31:26" itemprop="dateCreated datePublished" datetime="2020-03-10T20:31:26+08:00">2020-03-10</time>
             </span>
           
 
@@ -282,13 +293,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>文本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ture):</span><br><span class="line">    learn</span><br></pre></td></tr></table></figure>
-
+        <p>消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削峰等问题；实现高性能，高可用，可伸缩和最终一致性架构；使用较多的消息队列有ActiveMQ、RabbitMQ、Kafka、RocketMQ等。</p>
 <a id="more"></a>
 
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>文本</p>
-<p>链接：<a href="https://www.snort.org" target="_blank" rel="noopener">snort</a></p>
+<p>##消息队列常见使用场景<br>消息队列的常见使用场景主要分为异步处理，应用解耦，流量削峰、日志处理和消息通讯四个场景。<br>###1.异步处理<br>常见的场景为用户注册到短信邮箱验证信息返回，传统做法为依次执行完所有步骤后再返回客户端，通常有两种做法：串行与并行。</p>
+<ul>
+<li><p>串行：将注册信息写入数据库成功后，发送注册邮件，再发送注册短信。以上三个任务全部完成后，返回给客户端。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E4%B8%B2%E8%A1%8C%E5%A4%84%E7%90%86.png" alt="串行处理"></p>
+</li>
+<li><p>并行：将注册信息写入数据库成功后，发送注册邮件的同时，发送注册短信。以上三个任务完成后，返回给客户端。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86.png" alt="并行处理"></p>
+</li>
+</ul>
+<p>并行处理相对于串行处理，提高了相应速度，但依然还是等到发送请求完成后才将注册完成消息返回客户端。</p>
+<p>引入消息队列后，可以将注册与发送验证信息进行异步处理。改造后的架构如下：<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%BC%82%E6%AD%A5%E5%8C%96.png" alt="异步化"><br>用户的响应时间相当于是注册信息写入数据库的时间，也就是50毫秒。注册邮件，发送短信写入消息队列后，直接返回，因此写入消息队列的速度很快，基本可以忽略，因此用户的响应时间可能是50毫秒。因此架构改变后，系统的吞吐量提高到每秒20 QPS。比串行提高了3倍，比并行提高了两倍。</p>
+<p>###2.应用解耦<br>常见场景为商品下单到订单实际落库。传统下单行为是要等到订单实际落库后再返回消息到客户端页面，但对同一个商品下单并发数变高后，会导致较大的响应延时，并且订单系统与库存系统存在较大的耦合。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E4%BC%A0%E7%BB%9F%E8%AE%A2%E5%8D%95.png" alt="传统订单"></p>
+<p>引入消息队列之后：<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E5%BA%94%E7%94%A8%E8%A7%A3%E8%80%A6.png" alt="应用解耦"></p>
+<p>用户下单后，订单系统完成持久化处理，将消息写入消息队列，返回用户订单下单成功；订阅下单的消息，采用拉/推的方式，获取下单信息，库存系统根据下单信息，进行库存操作。在下单时库存系统不能正常使用。也不影响正常下单，因为下单后，订单系统写入消息队列就不再关心其他的后续操作了。实现订单系统与库存系统的应用解耦。</p>
+<p>###3.流量削峰<br>流量削峰也是消息队列中的常用场景，一般在秒杀或团抢活动中使用广泛。秒杀活动，一般会因为流量过大，导致流量暴增，应用挂掉。为解决这个问题，一般需要在应用前端加入消息队列。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E6%B5%81%E9%87%8F%E5%89%8A%E5%B3%B0.png" alt="流量削峰"></p>
+<p>用户的请求，服务器接收后，首先写入消息队列。假如消息队列长度超过最大数量，则直接抛弃用户请求或跳转到错误页面。秒杀业务根据消息队列中的请求信息，再做后续处理。可以控制活动的人数、可以缓解短时间内高流量压垮应用。</p>
+<p>###4.日志处理<br>日志处理是指将消息队列用在日志处理中，比如Kafka的应用，解决大量日志传输的问题。架构简化如下<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86.png" alt="日志处理"></p>
+<p>日志采集客户端，负责日志数据采集，定时写受写入Kafka队列；<br>Kafka消息队列，负责日志数据的接收，存储和转发；<br>日志处理应用：订阅并消费kafka队列中的日志数据；</p>
+<blockquote>
+<p>以下是新浪kafka日志处理应用案例：</p>
+<p>转自（<a href="http://cloud.51cto.com/art/201507/484338.htm）" target="_blank" rel="noopener">http://cloud.51cto.com/art/201507/484338.htm）</a><br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/Kafka%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86.png" alt="Kafka日志处理"><br>(1)Kafka：接收用户日志的消息队列<br>(2)Logstash：做日志解析，统一成JSON输出给Elasticsearch<br>(3)Elasticsearch：实时日志分析服务的核心技术，一个schemaless，实时的数据存储服务，通过index组织数据，兼具强大的搜索和统计功能<br>(4)Kibana：基于Elasticsearch的数据可视化组件，超强的数据可视化能力是众多公司选择ELK stack的重要原因.</p>
+</blockquote>
+<p>###5.消息通讯<br>消息通讯是指，消息队列一般都内置了高效的通信机制，因此也可以用在纯的消息通讯。比如实现点对点消息队列，或者聊天室等。<br>点对点通讯：</p>
+<p><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%9A%E4%BF%A1.png" alt="点对点通信"></p>
+<p>客户端A和客户端B使用同一队列，进行消息通讯。</p>
+<p>聊天室通讯：<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%80%9A%E4%BF%A1.png" alt="聊天室通信"></p>
+<p>客户端A，客户端B，客户端N订阅同一主题，进行消息发布和接收。实现类似聊天室效果。</p>
+<p>##常见消息队列对比<br>待更新</p>
 
     </div>
 
@@ -300,18 +333,28 @@
           
         
         <div class="post-tags">
-            <a href="/tags/test/" rel="tag"><i class="fa fa-skyatlas"></i> test</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-skyatlas"></i> Java</a>
+          
+            <a href="/tags/消息队列/" rel="tag"><i class="fa fa-skyatlas"></i> 消息队列</a>
+          
+            <a href="/tags/RocketMQ/" rel="tag"><i class="fa fa-skyatlas"></i> RocketMQ</a>
+          
+            <a href="/tags/Kafka/" rel="tag"><i class="fa fa-skyatlas"></i> Kafka</a>
           
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+              <a href="/2019/09/21/恶意域名检测与Snort_byte_test选项/" rel="next" title="恶意域名检测与Snort_byte_test选项">
+                <i class="fa fa-chevron-left"></i> 恶意域名检测与Snort_byte_test选项
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/21/addrinfo结构体定义及相关操作/" rel="prev" title="addrinfo结构体定义及相关操作">
-                addrinfo结构体定义及相关操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/01/Java分布式项目相关tips/" rel="prev" title="Java分布式项目相关tips">
+                Java分布式项目相关tips <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -343,17 +386,8 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -479,23 +513,6 @@
 
         </div>
       </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章"><span class="nav-number">1.</span> <span class="nav-text">第一章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章"><span class="nav-number">2.</span> <span class="nav-text">第二章</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
     </div>
   </aside>

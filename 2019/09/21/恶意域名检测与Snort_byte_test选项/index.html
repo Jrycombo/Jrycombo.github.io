@@ -65,18 +65,18 @@
 <meta name="keywords" content="Snort,恶意域名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="恶意域名检测与Snort_byte_test选项">
-<meta property="og:url" content="http://yoursite.com/2019/09/21/恶意域名检测与Snort_byte_test选项/index.html">
+<meta property="og:url" content="http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/index.html">
 <meta property="og:site_name" content="Jrycombo&#39;s Blog">
 <meta property="og:description" content="一、检测包含恶意域名的TCP数据包最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/.com//DNS_Header.jpg">
-<meta property="og:updated_time" content="2020-05-21T11:52:22.131Z">
+<meta property="og:image" content="http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/DNS_Header.jpg">
+<meta property="og:updated_time" content="2020-05-21T12:44:50.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意域名检测与Snort_byte_test选项">
 <meta name="twitter:description" content="一、检测包含恶意域名的TCP数据包最近在入侵检测系统中增加对勒索软件与木马的外连IP的屏蔽后，需要增加对恶意域名的检测与拦截。从沦陷主机中抓包分析发现，对于TCP协议，包含有恶意域名信息的外连流量主要还是80、443端口的HTTP、HTTPS数据，因此对于TCP流量可以写出规则如下：">
-<meta name="twitter:image" content="http://yoursite.com/.com//DNS_Header.jpg">
+<meta name="twitter:image" content="http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/DNS_Header.jpg">
   <link rel="alternate" href="/atom.xml" title="Jrycombo's Blog" type="application/atom+xml">
-  <link rel="canonical" href="http://yoursite.com/2019/09/21/恶意域名检测与Snort_byte_test选项/">
+  <link rel="canonical" href="http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/">
 
 
 <script id="page.configurations">
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/恶意域名检测与Snort_byte_test选项/">
+    <link itemprop="mainEntityOfPage" href="http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jrycombo">
@@ -301,7 +301,7 @@
 
 <p>其中<em>convert</em>为须比较的字节数，<em>operator</em>为比较操作符（’&gt;’,’&lt;’,’=’,’$’…），<em>value</em>为比较值，<em>offset</em>为偏移字段。</p>
 <p>了解byte_test的句法后需要对DNS协议以及DNS查询请求的数据包进行分析，找到表示查询请求的字节进行值比较。DNS头部请求如下图。</p>
-<p><img src="/.com//DNS_Header.jpg" alt="DNS头部"></p>
+<p><img src="//jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/DNS_Header.jpg" alt="DNS头部"></p>
 <p>通过对DNS查询请求数据包的分析可以了解到，DNS请求数据包的头部QR位与Opcode都为0表示查询请求。因此要识别出DNS查询请求，需判断DNS数据包中的这两个位置是否为0，检测时需要对DNS头部的第三个字节进行检测（即偏移两位）。第三个字节从高位到低位分别是：7:QR、6-3:Opcode、2:AA、1:TC、0:RD。只需要对高五位进行判断，可以将这个字节的值和0xF8(1111 1000)进行<strong>与</strong>操作，此时检测的是高五位是否为<strong>1</strong>，因此需要对操作结果取反。所以byte_test关键词的参数应设为”byte_test:1, !&amp;, 0xF8, 2;”，最后整个规则修改为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert udp $HOME_NET any -&gt; $EXTERNAL_NET 53 (msg:&quot;BLACKLIST TeslaCrypt Ransomware C2 Domain Detected&quot;; flow:to_server; byte_test:1, !&amp;, 0xF8, 2; pcre:&quot;/(faenzabike.makkie.com|runescape-autominer.info|artsabc.com)/mi&quot;; metadata:service dns; sid:100002; rev:1;)</span><br></pre></td></tr></table></figure>
 
@@ -339,8 +339,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2020/04/01/Java分布式项目相关tips/" rel="prev" title="Java分布式项目相关tips">
-                Java分布式项目相关tips <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/10/消息队列使用场景及常用消息队列对比/" rel="prev" title="消息队列使用场景及常用消息队列对比">
+                消息队列使用场景及常用消息队列对比 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -397,7 +397,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -424,7 +424,13 @@
         
           
         
-        <span class="site-state-item-count">6</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
