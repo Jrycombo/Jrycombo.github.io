@@ -69,7 +69,7 @@
 <meta property="og:site_name" content="Jrycombo&#39;s Blog">
 <meta property="og:description" content="Java分布式项目中遇到的部分小Tips与大Tips。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-21T12:17:07.114Z">
+<meta property="og:updated_time" content="2020-05-22T02:56:41.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java分布式项目相关tips">
 <meta name="twitter:description" content="Java分布式项目中遇到的部分小Tips与大Tips。">
@@ -290,7 +290,7 @@
 <li>多级缓存，请求-&gt;本地缓存-&gt;redis-&gt;数据库；</li>
 <li>基于session基于token认证；</li>
 <li>guava代替hashmap；</li>
-<li>尽量使用redis cluster，单个redis挂掉之后不要讲流量迅速泄洪至mysql；</li>
+<li>尽量使用redis cluster，单个redis挂掉之后不要将流量迅速泄洪至mysql；</li>
 <li>会话续命操作，延长至30分钟；请求续命、keepalive续命；</li>
 <li>通用性能优化口诀:缓存、异步、批处理。</li>
 </ol>
@@ -332,7 +332,7 @@
 <li>geo用来做谁在附近的功能</li>
 </ul>
 </li>
-<li>ocketmq除了消息订阅模式,事务型消息模式外还有其他哪些消息类型和模式?<ul>
+<li>rocketmq除了消息订阅模式,事务型消息模式外还有其他哪些消息类型和模式?<ul>
 <li>可以参考下他的官网 例如批量发送 延迟消息等</li>
 </ul>
 </li>

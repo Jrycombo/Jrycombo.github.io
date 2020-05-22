@@ -79,7 +79,12 @@
 <meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/Kafka%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86.png">
 <meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%9A%E4%BF%A1.png">
 <meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%80%9A%E4%BF%A1.png">
-<meta property="og:updated_time" content="2020-05-21T13:35:35.599Z">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/ActiveMQ.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/Kafka.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/RocketMQ.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/RabbitMQ.png">
+<meta property="og:image" content="http://jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E9%80%89%E5%9E%8B%E5%AF%B9%E6%AF%94.png">
+<meta property="og:updated_time" content="2020-05-22T02:59:16.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="消息队列使用场景及常用消息队列对比">
 <meta name="twitter:description" content="消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削峰等问题；实现高性能，高可用，可伸缩和最终一致性架构；使用较多的消息队列有ActiveMQ、RabbitMQ、Kafka、RocketMQ等。">
@@ -322,7 +327,37 @@
 <p>客户端A和客户端B使用同一队列，进行消息通讯。</p>
 <p>聊天室通讯：<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E8%81%8A%E5%A4%A9%E5%AE%A4%E9%80%9A%E4%BF%A1.png" alt="聊天室通信"></p>
 <p>客户端A，客户端B，客户端N订阅同一主题，进行消息发布和接收。实现类似聊天室效果。</p>
-<h2 id="常见消息队列对比"><a href="#常见消息队列对比" class="headerlink" title="常见消息队列对比"></a>常见消息队列对比</h2><p>待更新</p>
+<h2 id="常见消息队列对比"><a href="#常见消息队列对比" class="headerlink" title="常见消息队列对比"></a>常见消息队列对比</h2><h3 id="1-ActiveMQ"><a href="#1-ActiveMQ" class="headerlink" title="1.ActiveMQ"></a>1.ActiveMQ</h3><p>Apache下的一个子项目。使用Java完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现，少量代码就可以高效地实现高级应用场景。可插拔的传输协议支持，比如：in-VM, TCP, SSL, NIO, UDP, multicast, JGroups and JXTA transports。ActiveMQ支持常用的多种语言客户端 C++、Java、.Net,、Python、 Php、 Ruby等。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/ActiveMQ.png" alt="ActiveMQ"></p>
+<h3 id="2-Kafka"><a href="#2-Kafka" class="headerlink" title="2.Kafka"></a>2.Kafka</h3><p>Apache下的一个子项目，使用scala实现的一个高性能分布式Publish/Subscribe消息队列系统，具有以下特性：</p>
+<ul>
+<li><p>快速持久化：通过磁盘顺序读写与零拷贝机制，可以在O(1)的系统开销下进行消息持久化；</p>
+</li>
+<li><p>高吞吐：在一台普通的服务器上既可以达到10W/s的吞吐速率；</p>
+</li>
+<li><p>高堆积：支持topic下消费者较长时间离线，消息堆积量大；</p>
+</li>
+<li><p>完全的分布式系统：Broker、Producer、Consumer都原生自动支持分布式，依赖zookeeper自动实现复杂均衡；</p>
+</li>
+<li><p>支持Hadoop数据并行加载：对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/Kafka.png" alt="Kafka"></p>
+</li>
+</ul>
+<h3 id="3-RocketMQ"><a href="#3-RocketMQ" class="headerlink" title="3.RocketMQ"></a>3.RocketMQ</h3><p>阿里系下开源的一款分布式、队列模型的消息中间件，原名Metaq，3.0版本名称改为RocketMQ，是阿里参照kafka设计思想使用java实现的一套mq。同时将阿里系内部多款mq产品（Notify、metaq）进行整合，只维护核心功能，去除了所有其他运行时依赖，保证核心功能最简化，在此基础上配合阿里上述其他开源产品实现不同场景下mq的架构，目前主要多用于订单交易系统。具有以下特点：</p>
+<ul>
+<li><p>能够保证严格的消息顺序</p>
+</li>
+<li><p>提供针对消息的过滤功能</p>
+</li>
+<li><p>提供丰富的消息拉取模式</p>
+</li>
+<li><p>高效的订阅者水平扩展能力</p>
+</li>
+<li><p>实时的消息订阅机制</p>
+</li>
+<li><p>亿级消息堆积能力<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/RocketMQ.png" alt="RocketMQ"></p>
+</li>
+</ul>
+<h3 id="4-RabbitMQ"><a href="#4-RabbitMQ" class="headerlink" title="4.RabbitMQ"></a>4.RabbitMQ</h3><p>使用Erlang编写的一个开源的消息队列，本身支持很多的协议：AMQP，XMPP, SMTP,STOMP，也正是如此，使的它变的非常重量级，更适合于企业级的开发。同时实现了Broker架构，核心思想是生产者不会将消息直接发送给队列，消息在发送给客户端时先在中心队列排队。对路由(Routing)，负载均衡(Load balance)、数据持久化都有很好的支持。多用于进行企业级的ESB整合。<br><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/RabbitMQ.png" alt="RabbitMQ"></p>
+<h3 id="5-选型对比"><a href="#5-选型对比" class="headerlink" title="5.选型对比"></a>5.选型对比</h3><p><img src="//jrycombo.space/2020/03/10/消息队列使用场景及常用消息队列对比/%E9%80%89%E5%9E%8B%E5%AF%B9%E6%AF%94.png" alt="选型对比"></p>
 
     </div>
 
@@ -533,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列常见使用场景"><span class="nav-number">1.</span> <span class="nav-text">消息队列常见使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-异步处理"><span class="nav-number">1.1.</span> <span class="nav-text">1.异步处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-应用解耦"><span class="nav-number">1.2.</span> <span class="nav-text">2.应用解耦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-流量削峰"><span class="nav-number">1.3.</span> <span class="nav-text">3.流量削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-日志处理"><span class="nav-number">1.4.</span> <span class="nav-text">4.日志处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-消息通讯"><span class="nav-number">1.5.</span> <span class="nav-text">5.消息通讯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见消息队列对比"><span class="nav-number">2.</span> <span class="nav-text">常见消息队列对比</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列常见使用场景"><span class="nav-number">1.</span> <span class="nav-text">消息队列常见使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-异步处理"><span class="nav-number">1.1.</span> <span class="nav-text">1.异步处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-应用解耦"><span class="nav-number">1.2.</span> <span class="nav-text">2.应用解耦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-流量削峰"><span class="nav-number">1.3.</span> <span class="nav-text">3.流量削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-日志处理"><span class="nav-number">1.4.</span> <span class="nav-text">4.日志处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-消息通讯"><span class="nav-number">1.5.</span> <span class="nav-text">5.消息通讯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见消息队列对比"><span class="nav-number">2.</span> <span class="nav-text">常见消息队列对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ActiveMQ"><span class="nav-number">2.1.</span> <span class="nav-text">1.ActiveMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Kafka"><span class="nav-number">2.2.</span> <span class="nav-text">2.Kafka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-RocketMQ"><span class="nav-number">2.3.</span> <span class="nav-text">3.RocketMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-RabbitMQ"><span class="nav-number">2.4.</span> <span class="nav-text">4.RabbitMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-选型对比"><span class="nav-number">2.5.</span> <span class="nav-text">5.选型对比</span></a></li></ol></li></ol></div>
             
 
           </div>
