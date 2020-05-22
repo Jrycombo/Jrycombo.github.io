@@ -63,6 +63,27 @@
   </entry>
   
   <entry>
+    <title>Redis 的操作为什么是的原子性理解</title>
+    <link href="http://jrycombo.space/2020/02/22/Redis-%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%9A%84%E5%8E%9F%E5%AD%90%E6%80%A7%E7%90%86%E8%A7%A3/"/>
+    <id>http://jrycombo.space/2020/02/22/Redis-的操作为什么是的原子性理解/</id>
+    <published>2020-02-22T03:56:33.000Z</published>
+    <updated>2020-05-22T04:03:45.644Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>原子性是数据库的事务中的特性。在数据库事务的情景下，原子性指的是：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。</p><p>对于Redis而言，命令的原子性指的是：一个操作的不可以再分，操作要么执行，要么不执行。</p><a id="more"></a><h3 id="Redis操作原子性的原因"><a href="#Redis操作原子性的原因" class="headerlink" title="Redis操作原子性的原因"></a>Redis操作原子性的原因</h3><p>Redis的操作之所以是原子性的，是因为Redis是单线程的。</p><p>线程，是操作系统最小的执行单元，在单线程程序中，任务一个一个地做，必须做完一个任务后，才会去做另一个任务。</p><h3 id="Redis在并发中的表现"><a href="#Redis在并发中的表现" class="headerlink" title="Redis在并发中的表现"></a>Redis在并发中的表现</h3><p>Redis的API是原子性的操作，那么多个命令在并发中也是原子性的吗？</p><pre><code>$redis= newRedis();$redis-&gt;connect(&apos;127.0.0.1&apos;,6379);for($i= 0;$iget(&apos;val&apos;);$num++;$redis-&gt;set(&apos;val&apos;,$num);usleep(10000);}</code></pre><p>用两个终端执行上面的程序，发现val的结果是小于2000的值，那么可以知道，在程序中执行多个Redis命令并非是原子性的，这也和普通数据库的表现是一样的。</p><p>如果想在上面的程序中实现原子性，可以将get和set改成单命令操作，比如incr，或者使用Redis的事务，或者使用Redis+Lua的方式实现。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综上所述，对Redis来说，执行get、set以及eval等API，都是一个一个的任务，这些任务都会由Redis的线程去负责执行，任务要么执行成功，要么执行失败，这就是Redis的命令是原子性的原因。</p><p>Redis本身提供的所有API都是原子操作，Redis中的事务其实是要保证批量操作的原子性。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;原子性&quot;&gt;&lt;a href=&quot;#原子性&quot; class=&quot;headerlink&quot; title=&quot;原子性&quot;&gt;&lt;/a&gt;原子性&lt;/h3&gt;&lt;p&gt;原子性是数据库的事务中的特性。在数据库事务的情景下，原子性指的是：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。&lt;/p&gt;
+&lt;p&gt;对于Redis而言，命令的原子性指的是：一个操作的不可以再分，操作要么执行，要么不执行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="http://jrycombo.space/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>恶意域名检测与Snort_byte_test选项</title>
     <link href="http://jrycombo.space/2019/09/21/%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D%E6%A3%80%E6%B5%8B%E4%B8%8ESnort_byte_test%E9%80%89%E9%A1%B9/"/>
     <id>http://jrycombo.space/2019/09/21/恶意域名检测与Snort_byte_test选项/</id>
@@ -111,9 +132,9 @@
     <link href="http://jrycombo.space/2019/08/02/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87%E6%B5%8B%E8%AF%95/"/>
     <id>http://jrycombo.space/2019/08/02/第一篇博文测试/</id>
     <published>2019-08-02T08:30:05.000Z</published>
-    <updated>2019-08-21T13:22:53.847Z</updated>
+    <updated>2020-05-22T08:20:47.360Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>文本</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ture):</span><br><span class="line">    learn</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>文本</p><p>链接：<a href="https://www.snort.org" target="_blank" rel="noopener">snort</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>文本</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ture):</span><br><span class="line">    learn</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>文本</p><p>链接：<a href="https://www.snort.org" target="_blank" rel="noopener">snort</a></p><h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><p>优质博客记录</p><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p><a href="https://blog.csdn.net/woainilixuhao/article/details/99722249" target="_blank" rel="noopener">redis更高级一步</a></p><p><a href="https://www.cnblogs.com/lpfuture/p/5796398.html" target="_blank" rel="noopener">一致性哈希算法原理</a></p><p><a href="https://www.cnblogs.com/xrq730/p/5186728.html" target="_blank" rel="noopener">对一致性Hash算法，Java代码实现的深入研究</a></p><p><a href="https://www.jianshu.com/p/ed83515cb46c?utm_source=oschina-app" target="_blank" rel="noopener">Redis集群的一致性Hash及代码演示</a></p><h4 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTQwNDEyMg==&mid=2247483680&idx=1&sn=a844dc83df3316ac0102ea11511b8b46&chksm=fce1fb15cb9672032e98857a74f4e971a1ff833a6e353cafee655587c70a93e730a652daf5a2&scene=21#wechat_redirect" target="_blank" rel="noopener">如果有人问你CAP理论是什么，就把这篇文章发给他。</a></p>]]></content>
     
     <summary type="html">
     
