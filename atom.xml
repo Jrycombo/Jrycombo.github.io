@@ -63,11 +63,11 @@
   </entry>
   
   <entry>
-    <title>Redis 的操作为什么是的原子性理解</title>
-    <link href="http://jrycombo.space/2020/02/22/Redis-%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%9A%84%E5%8E%9F%E5%AD%90%E6%80%A7%E7%90%86%E8%A7%A3/"/>
-    <id>http://jrycombo.space/2020/02/22/Redis-的操作为什么是的原子性理解/</id>
+    <title>Redis 的操作为什么是原子性的理解</title>
+    <link href="http://jrycombo.space/2020/02/22/Redis-%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>http://jrycombo.space/2020/02/22/Redis-的操作为什么是原子性的理解/</id>
     <published>2020-02-22T03:56:33.000Z</published>
-    <updated>2020-05-22T04:03:45.644Z</updated>
+    <updated>2020-05-22T08:22:56.538Z</updated>
     
     <content type="html"><![CDATA[<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>原子性是数据库的事务中的特性。在数据库事务的情景下，原子性指的是：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。</p><p>对于Redis而言，命令的原子性指的是：一个操作的不可以再分，操作要么执行，要么不执行。</p><a id="more"></a><h3 id="Redis操作原子性的原因"><a href="#Redis操作原子性的原因" class="headerlink" title="Redis操作原子性的原因"></a>Redis操作原子性的原因</h3><p>Redis的操作之所以是原子性的，是因为Redis是单线程的。</p><p>线程，是操作系统最小的执行单元，在单线程程序中，任务一个一个地做，必须做完一个任务后，才会去做另一个任务。</p><h3 id="Redis在并发中的表现"><a href="#Redis在并发中的表现" class="headerlink" title="Redis在并发中的表现"></a>Redis在并发中的表现</h3><p>Redis的API是原子性的操作，那么多个命令在并发中也是原子性的吗？</p><pre><code>$redis= newRedis();$redis-&gt;connect(&apos;127.0.0.1&apos;,6379);for($i= 0;$iget(&apos;val&apos;);$num++;$redis-&gt;set(&apos;val&apos;,$num);usleep(10000);}</code></pre><p>用两个终端执行上面的程序，发现val的结果是小于2000的值，那么可以知道，在程序中执行多个Redis命令并非是原子性的，这也和普通数据库的表现是一样的。</p><p>如果想在上面的程序中实现原子性，可以将get和set改成单命令操作，比如incr，或者使用Redis的事务，或者使用Redis+Lua的方式实现。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综上所述，对Redis来说，执行get、set以及eval等API，都是一个一个的任务，这些任务都会由Redis的线程去负责执行，任务要么执行成功，要么执行失败，这就是Redis的命令是原子性的原因。</p><p>Redis本身提供的所有API都是原子操作，Redis中的事务其实是要保证批量操作的原子性。</p>]]></content>
     
